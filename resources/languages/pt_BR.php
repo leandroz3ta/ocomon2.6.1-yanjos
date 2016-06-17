@@ -1,10 +1,17 @@
 <?php
-$LANG["formNome"]="Nome";
-$LANG["formUsuario"]="Usuário";
+/*
+Arquivo de idioma
+Todos Textos de botoes e formularios.
+
+OBS: mensagens de erros devem ser configuradas no .JS de cada pagina (resources\js\validate)
+*/
+
+$LANG["formName"]="Nome";
+$LANG["formUser"]="Usuário";
 $LANG["formEmail"]="Email";
-$LANG["formSenha"]="Senha";
+$LANG["formPassword"]="Senha";
 $LANG["buttonLogin"]="Log In";
-$LANG["buttonCadastrar"]="Cadastrar";
+$LANG["buttonRegister"]="Cadastrar";
 $LANG["textRecoveryPass"]="Recuperar Senha";
 $LANG["textForgotPass"]="Esqueceu a senha?";
 $LANG["buttonClose"]="Fechar";

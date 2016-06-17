@@ -1,6 +1,7 @@
 <?php
+//carrega as configurações iniciais
 include("../../resources/config/geral.php");
-include($includeLANGUAGE.LANGUAGE);
+
 ?>
 
 <!DOCTYPE html>
@@ -12,10 +13,12 @@ include($includeLANGUAGE.LANGUAGE);
 	<title>DataTables example - Row details</title>
 
 		<?php
+		//carrega os CSS e JS utilizado na tabela
 		include($includeCSS."dataTable.php");
 		include($includeJS."dataTable.php");
-		?>
 
+		?>
+		
 	<script type="text/javascript" language="javascript" class="init">
 	
 
@@ -107,5 +110,8 @@ $(document).ready(function() {
 			</table>			
 		</section>
 	</div>
+	
+		
+		
 </body>
 </html>

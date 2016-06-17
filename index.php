@@ -1,6 +1,7 @@
 <?php
+//carrega as configurações iniciais
 include("resources/config/geral.php");
-include($includeLANGUAGE.LANGUAGE);
+
 ?>
 
 <!DOCTYPE html> 
@@ -12,12 +13,13 @@ include($includeLANGUAGE.LANGUAGE);
 		<meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0">
 		
 		<?php
+			//carrega os CSS utilizado no formulario
 			include($includeCSS."forms.php");
-			include($includeJS."forms.php");
+			include($includeJS."forms.php");			
 		?>
 			
-
-	
+		<script src="<?php echo $pathVALIDATE;?>/index.js"></script>
+			
 	<body class="bg-cyan">
 		<div class="body body-s">		
 			<form action="" id="formLogin" class="sky-form" method="post">
@@ -26,7 +28,7 @@ include($includeLANGUAGE.LANGUAGE);
 				<fieldset>					
 					<section>
 						<div class="row">
-							<label class="label col col-4"><?php echo $LANG["formUsuario"]; ?></label>
+							<label class="label col col-4"><?php echo $LANG["formUser"]; ?></label>
 							<div class="col col-8">
 								<label class="input">
 									<i class="icon-append fa fa-user"></i>
@@ -38,13 +40,13 @@ include($includeLANGUAGE.LANGUAGE);
 					
 					<section>
 						<div class="row">
-							<label class="label col col-4"><?php echo $LANG["formSenha"]; ?></label>
+							<label class="label col col-4"><?php echo $LANG["formPassword"]; ?></label>
 							<div class="col col-8">
 								<label class="input">
 									<i class="icon-append fa fa-lock"></i>
 									<input type="password" name="formSenha">
 								</label>
-								<div class="note"><a href="#formRecoveryPass" class="modal-opener"><?php echo $LANG["textForgotPass"]; ?></a></div>
+								<div class="note"><a href="#formRecoveryPass" class="modal-opener" ><?php echo $LANG["textForgotPass"]; ?></a></div>
 							</div>
 						</div>
 					</section>
@@ -52,7 +54,7 @@ include($includeLANGUAGE.LANGUAGE);
 				</fieldset>
 				<footer>
 					<button type="submit" class="button" name="buttonLogin"><?php echo $LANG["buttonLogin"]; ?></button>
-					<a href="#" class="button button-secondary"><?php echo $LANG["buttonCadastrar"]; ?></a>
+					<a href="#" class="button button-secondary"><?php echo $LANG["buttonRegister"]; ?></a>
 				</footer>
 			</form>			
 		</div>

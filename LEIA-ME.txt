@@ -1,0 +1,19 @@
+ocomon2.6.1-yanjos
+
+Esse projeto tem como finalidade melhorar o visual do sistema de chamado Ocomon(ocomonphp.sourceforge.net/)
+Por ser um software livre os fontes podem ser alterados caso seja necessario
+A maioria dos fontes está comentado caso seja necessario realizar alguma alteracao
+Favor manter o padrão de codigo e disponibilize a alteracao para outros usuarios do sistema
+
+REQUISITOS:
+mySQL 5.5
+PHP 5.6
+Apache
+HOSPEDAGEM LINUX -> para utilizar o recurso de envio de e-mail com o percentual de SLA 
+					e envio de e-mail com a pesquisa de satisfação devera ser ser hospedado em um
+					servidor linux devido ao uso da funcinalidade CRON
+
+INSTALAÇÃO:
+copie os fontes para o diretorio onde sera hospedado o sistema
+altere o arquivo xxxxx com as configurações do banco de dados
+

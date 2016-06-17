@@ -1,6 +1,20 @@
 <?php
-include("../../resources/config/geral.php");
-include($includeLANGUAGE.LANGUAGE);
+	//carrega as configurações iniciais
+	include("../../resources/config/geral.php");
+
+	# Inicnando a variavel que vai indentificar se temos que exibir o modal ou não
+	$exibirModal = true;
+	# Verificando se não existe o cookie
+	if(!isset($_COOKIE["usuarioVisualizouModal"]))
+	{
+	# Caso não exista entra aqui.
+
+	# Vamos criar o cookie com duração de 1 semana</pre>
+	setcookie('usuarioVisualizouModal', 'SIM');
+
+	# Seto nossa variavel de controle com o valor TRUE ( Verdadeiro)
+	$exibirModal = true;
+	}
 ?>
 <!DOCTYPE HTML>
 <html>
@@ -9,13 +23,38 @@ include($includeLANGUAGE.LANGUAGE);
 	<title>Ocomon</title>
 	
 	<?php
+		//carrega os CSS e JS utilizado no menu
 		include($includeCSS."menu.php");
 		include($includeJS."menu.php");
-		
+		//carrega os CSS e JS utilizado no formulario
 		include($includeCSS."forms.php");
 		include($includeJS."forms.php");
 	?>
 	
+		<?php if($exibirModal === true) : ?>
+		<!-- Jquery para abrir modal com os avisos do sistema -->
+			<script type="text/javascript" language="javascript">
+			$(document).ready(function() {
+			if( !$('#sky-form-modal-overlay').length )
+		{
+			$('body').append('<div id="sky-form-modal-overlay" class="sky-form-modal-overlay"></div>');
+		}		
+	
+		$('#sky-form-modal-overlay').on('click', function()
+		{
+			$('#sky-form-modal-overlay').fadeOut();
+			$('.sky-form-modal').fadeOut();
+		});
+		
+		form = $($('#avisos'));
+		$('#sky-form-modal-overlay').fadeIn();
+		form.css('top', '50%').css('left', '50%').css('margin-top', -form.outerHeight()/2).css('margin-left', -form.outerWidth()/2).fadeIn();
+		
+		return false;
+		} );
+		</script>
+		
+		<?php endif;?>
 			
 	<script type="text/javascript">
 	function clique(href){		
@@ -73,6 +112,7 @@ include($includeLANGUAGE.LANGUAGE);
 		</ul>	
 	</div>	
 	
+	
 	<!-- Demo Page Description -->
 	<div id="container" class="container">
 		
@@ -80,6 +120,22 @@ include($includeLANGUAGE.LANGUAGE);
 		
 	</div>
 	
-	
+	<form action="demo-login-process.php" id="avisos" class="sky-form sky-form-modal">
+			<header>Avisos</header>
+			
+			<fieldset>					
+				<section>
+					<label class="label">data</label>
+					<label class="label">mensagem xyz</label>
+				</section>
+			</fieldset>
+			
+			<footer>
+				<button type="submit" name="submit" class="button"><?php echo $LANG["buttonSend"]; ?></button>
+				<a href="#" class="button button-secondary modal-closer"><?php echo $LANG["buttonClose"]; ?></a>
+			</footer>
+				
+	</form>
+		
 </body>
 </html>
