@@ -131,8 +131,7 @@
 			</fieldset>
 			
 			<footer>
-				<button type="submit" name="submit" class="button"><?php echo $LANG["buttonSend"]; ?></button>
-				<a href="#" class="button button-secondary modal-closer"><?php echo $LANG["buttonClose"]; ?></a>
+				<a href="#" class="button button-secondary modal-closer"><?php echo $LANG["Close"]; ?></a>
 			</footer>
 				
 	</form>

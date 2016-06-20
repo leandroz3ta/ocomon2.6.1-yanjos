@@ -29,6 +29,7 @@ $includeIMG=$include."resources/img/";
 $includeICONS=$include."resources/icons/";
 
 //caminho das paginas
+$linkHome=$file."view/geral/inicio.php";
 $linkTickets=$file."view/ocomon/consultTicketOperator.php";
 $linkOpenTicket=$file."view/ocomon/formOpenTicket.php";
 ?>
