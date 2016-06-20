@@ -12,7 +12,7 @@ $folder = "/".$folder[1]."/";
 $include= $_SERVER['DOCUMENT_ROOT'].$folder;
 
 //Descobre o nome do host
-$file= "http://".$_SERVER['SERVER_NAME'].$folder;
+$file= "http://".$_SERVER['SERVER_NAME'].":".$_SERVER['SERVER_PORT'].$folder;
 
 //monta o caminho para arquivos CSS, JS, IMG, etc(escrever tanto cansa)
 $pathCSS=$file."resources/css/";
@@ -32,4 +32,5 @@ $includeICONS=$include."resources/icons/";
 $linkHome=$file."view/geral/inicio.php";
 $linkTickets=$file."view/ocomon/consultTicketOperator.php";
 $linkOpenTicket=$file."view/ocomon/formOpenTicket.php";
+
 ?>
