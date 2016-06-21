@@ -1,6 +1,5 @@
 <?php
 
-//Como iremos usar nesta classe o que foi setado para a classe Bean, é necessário importar a classe Bean aqui.
 require_once("../model/bean/Login.class.php");
 require_once("dbconfig.php"); // Classe conexao com o banco
 

@@ -43,6 +43,10 @@ $columns = array(
 	array( 'db' => 'last_name',  'dt' => 'last_name' ),
 	array( 'db' => 'position',   'dt' => 'position' ),
 	array( 'db' => 'office',     'dt' => 'office' ),
+	array( 'db' => 'first_name', 'dt' => 'first_name1' ),
+	array( 'db' => 'last_name',  'dt' => 'last_name1' ),
+	array( 'db' => 'position',   'dt' => 'position1' ),
+	array( 'db' => 'office',     'dt' => 'office1' ),
 	array(
 		'db'        => 'start_date',
 		'dt'        => 'start_date',
@@ -66,15 +70,50 @@ $sql_details = array(
 	'host' => 'localhost'
 );
 
+$user1= array(
+"numero"=>"row_1",
+"area"=>"alva",
+"etiqueta"=>"Nixon",
+"problema"=>"System Architect",
+"contato"=>"Edinburgh",
+"ramal"=>"Tiger",
+"setor"=>"Nixon",
+"sla"=>"System Architect",
+"descricao"=>"Edinburgh"
+);
 
+$user2 = array(
+"numero"=>"row_1",
+"area"=>"alva",
+"etiqueta"=>"Nixon",
+"problema"=>"System Architect",
+"contato"=>"Edinburgh",
+"ramal"=>"Tiger",
+"setor"=>"Nixon",
+"sla"=>"System Architect",
+"descricao"=>"Edinburgh"
+);
+
+/*$detail = array('user' => 'root',
+	'draw' => 0,
+	'recordsTotal'   => 57,
+	'recordsFiltered' => 57,
+	'data' => $data);
 /* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
  * If you just want to use the basic configuration for DataTables with PHP
  * server-side, there is no need to edit below this line.
  */
 
-require( '../controller/ssp.class.php' );
+	//carrega as configurações iniciais
+	include("../resources/config/geral.php");
 
+	//Aqui importamos todas as classes que poderão ser usadas baseado nas solicitações que forem feitas.
+	require_once("../model/bean/Ticket.class.php"); // Classe Bean
+	require_once("../model/dao/TicketDAO.class.php"); // Classe DAO
+	
+	$ticketDAO = new TicketDAO();
+	
 echo json_encode(
-	SSP::simple( $_GET, $sql_details, $table, $primaryKey, $columns )
+	$ticketDAO->operatorTicket(1)
 );
 

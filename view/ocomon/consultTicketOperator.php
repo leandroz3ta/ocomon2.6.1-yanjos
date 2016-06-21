@@ -23,16 +23,14 @@ include("../../resources/config/geral.php");
 	
 
 function format ( d ) {
-	return 'Full name: '+d.first_name+' '+d.last_name+'<br>'+
-	    'Salary: '+d.salary+'<br>'+
-		'The child row can contain any data you wish, including links, images, inner tables etc.';
+	return d.descricao;
 }
 
 $(document).ready(function() {
 	var dt = $('#example').DataTable( {
 		"processing": true,
 		"serverSide": true,
-		"ajax": "../../model/ids-objects.php",
+		"ajax": "../../controller/ids-objects.php",
 		"columns": [ 
 			{
 				"class":          "details-control",
@@ -40,14 +38,14 @@ $(document).ready(function() {
 				"data":           null,
 				"defaultContent": ""
 			},
-			{ "data": "first_name" },
-			{ "data": "last_name" },
-			{ "data": "position" },
-			{ "data": "office" },
-			{ "data": "first_name1" },
-			{ "data": "last_name1" },
-			{ "data": "position1" },
-			{ "data": "office1" }
+			{ "data": "numero" },
+			{ "data": "area" },
+			{ "data": "etiqueta" },
+			{ "data": "problema" },
+			{ "data": "contato" },
+			{ "data": "ramal" },
+			{ "data": "setor" },
+			{ "data": "sla" }
 		],
 		"order": [[1, 'asc']]
 	} );
@@ -97,14 +95,14 @@ $(document).ready(function() {
 				<thead>
 					<tr>
 						<th></th>
-						<th>First name</th>
-						<th>Last name</th>
-						<th>Position</th>
-						<th>Office</th>
-						<th>First name</th>
-						<th>Last name</th>
-						<th>Position</th>
-						<th>Office</th>
+						<th>Número</th>
+						<th>Area</th>
+						<th>Etiqueta</th>
+						<th>Problema</th>
+						<th>Contato</th>
+						<th>Ramal</th>
+						<th>Setor</th>
+						<th>SLA</th>						
 					</tr>
 				</thead>
 			</table>			
