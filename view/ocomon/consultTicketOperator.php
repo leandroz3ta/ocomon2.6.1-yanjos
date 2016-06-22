@@ -45,7 +45,9 @@ $(document).ready(function() {
 			{ "data": "contato" },
 			{ "data": "ramal" },
 			{ "data": "setor" },
-			{ "data": "sla" }
+			{ "data": "status" },
+			{ "data": "slaR" },
+			{ "data": "slaS" }
 		],
 		"order": [[1, 'asc']]
 	} );
@@ -102,7 +104,9 @@ $(document).ready(function() {
 						<th>Contato</th>
 						<th>Ramal</th>
 						<th>Setor</th>
-						<th>SLA</th>						
+						<th>Status</th>
+						<th>SLA R</th>	
+						<th>SLA S</th>						
 					</tr>
 				</thead>
 			</table>			
