@@ -28,7 +28,7 @@ $(document).ready(function() {
 	var dt = $('#example').DataTable( {
 		"processing": true,
 		"serverSide": true,
-		"ajax": "../../controller/ids-objects.php",
+		"ajax": "../../controller/dataTableController.php",
 		"columns": [ 
 			{
 				"class":          "details-control",
@@ -96,15 +96,15 @@ $(document).ready(function() {
 					<tr>
 						<th></th>
 						<th>Número</th>
-						<th>Area</th>
+						<th>Área</th>
 						<th>Etiqueta</th>
 						<th>Problema</th>
 						<th>Contato</th>
 						<th>Ramal</th>
 						<th>Setor</th>
 						<th>Status</th>
-						<th>SLA R</th>	
-						<th>SLA S</th>						
+						<th>SLA Resposta</th>	
+						<th>SLA Solução</th>						
 					</tr>
 				</thead>
 			</table>			
