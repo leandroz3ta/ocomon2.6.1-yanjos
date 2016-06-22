@@ -59,8 +59,12 @@ class TicketDAO{
 	}
 	
 	
-	static function filter ( $request )	{		
-		$where = " AND (cod_status<>4 AND cod_status<>12) ";
+	static function filter ( $request,$status )	{
+		if($status == "OPERATOR")
+			$where = " AND (cod_status<>4 AND cod_status<>12) ";
+		else if($status == "USER")
+			$where = "";
+		
 		if ( isset($request['search']) && $request['search']['value'] != '' ) {
 			$str = $request['search']['value'];
 			
@@ -71,19 +75,6 @@ class TicketDAO{
 		return $where;
 	}
 	
-	static function explodeArea ( $area )	{		
-		
-		$areaReturn='';
-		for ( $i=0, $j=count($area) ; $i<$j ; $i++ ) {
-			$n= $j-1;
-			if($i == $n)
-				$areaReturn.=$area[$i];
-			else
-				$areaReturn.=$area[$i].",";
-		}
-
-		return "cod_area IN (".$areaReturn.")";
-	}
 	
 	function operatorTicket($request,$area){
 		
@@ -91,8 +82,8 @@ class TicketDAO{
 		{	
 			$limit = self::limit( $request);
 			$order = self::order( $request);
-			$where = self::filter( $request);
-			$area = self::explodeArea( $area);
+			$where = self::filter( $request,"OPERATOR");
+			$area = "cod_area IN (".$area.")";
 			
 			$stmt = $this->conn->prepare("SELECT * FROM all_tickets WHERE ".$area.$where.$order.$limit);
 			$stmt->execute();
@@ -100,6 +91,40 @@ class TicketDAO{
 			
 			$stmt = $this->conn->prepare("SELECT * FROM all_tickets WHERE ".$area.$where);
 			$stmt->execute();
+			$records=$stmt->rowCount();
+			
+			return array(
+			"draw"            => isset ( $request['draw'] ) ? 
+								 intval( $request['draw'] ) :
+								 0,
+			"recordsTotal"    => intval( $records ),
+			"recordsFiltered" => intval( $records ),
+			"data"            => self::data_output($dataRow)
+			);
+			
+
+		}
+		catch(PDOException $e)
+		{
+			echo $e->getMessage();
+		}
+		
+	}
+	
+		function userTicket($request,$userID){
+		
+		try
+		{	
+			$limit = self::limit( $request);
+			$order = self::order( $request);
+			$where = self::filter( $request,"USER");
+			
+			$stmt = $this->conn->prepare("SELECT * FROM all_tickets WHERE aberto_por=:aberto_por".$where.$order.$limit);
+			$stmt->execute(array(':aberto_por'=>$userID));
+			$dataRow=$stmt->fetchAll();
+			
+			$stmt = $this->conn->prepare("SELECT * FROM all_tickets WHERE aberto_por=:aberto_por".$where);
+			$stmt->execute(array(':aberto_por'=>$userID));
 			$records=$stmt->rowCount();
 			
 			return array(

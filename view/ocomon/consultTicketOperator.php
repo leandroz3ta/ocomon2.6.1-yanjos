@@ -28,7 +28,7 @@ $(document).ready(function() {
 	var dt = $('#ticketTable').DataTable( {
 		"processing": true,
 		"serverSide": true,
-		"ajax": "../../controller/dataTableController.php",
+		"ajax": "../../controller/DataTableController.php",
 		"columns": [ 
 			{
 				"class":          "details-control",
@@ -47,7 +47,7 @@ $(document).ready(function() {
 			{ "data": "slaR" },
 			{ "data": "slaS" }
 		],
-		"order": [[1, 'asc']]
+		"order": [[1, 'desc']]
 	} );
 
 	// Array to track the ids of the details displayed rows

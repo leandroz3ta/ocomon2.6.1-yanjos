@@ -13,4 +13,5 @@ define ( "LANGUAGE", "pt_BR.php");
 //carrega arquivo de idioma
 include($includeLANGUAGE.LANGUAGE);
 
+session_start();
 ?>

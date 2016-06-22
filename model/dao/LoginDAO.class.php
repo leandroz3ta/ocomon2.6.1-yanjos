@@ -7,7 +7,6 @@ require_once("GeneralDAO.class.php"); // Classe DAO
 class LoginDAO extends GeneralDAO{
 	
 	
-	
 	function authenticateUser($user){
 		
 		try
@@ -25,6 +24,8 @@ class LoginDAO extends GeneralDAO{
 				$_SESSION['nivel'] = $userRow['nivel'];
 				$_SESSION['area'] = $userRow['area'];
 				$_SESSION['userAdmin'] = $userRow['user_admin'];
+				$_SESSION['atende'] = $userRow['sis_atende'];
+				$_SESSION['allArea'] = self::areaUser( $userRow['user_id'] );
 				return true;
 			}
 			else
@@ -37,6 +38,35 @@ class LoginDAO extends GeneralDAO{
 		
 	}
 	
+	function areaUser($userID){
+				
+		try
+		{	
+			$stmt = $this->conn->prepare("SELECT uarea_uid,uarea_sid FROM usuarios_areas WHERE uarea_uid=:userID ");
+			$stmt->execute(array(':userID'=>$userID));
+			$userRow=$stmt->fetchAll();
+			
+			$areaReturn='';
+			if($stmt->rowCount() > 1){
+				for ( $i=0, $j=count($userRow) ; $i<$j ; $i++ ) {
+					$n= $j-1;
+					if($i == $n)
+						$areaReturn.=$userRow[$i]['uarea_sid'];
+					else
+						$areaReturn.=$userRow[$i]['uarea_sid'].",";
+				}
+				return $areaReturn;				
+			}
+			else
+				return $areaReturn;
+		}
+		catch(PDOException $e)
+		{
+			echo $e->getMessage();
+		}		
+		
+		
+	}
 
 }
 
