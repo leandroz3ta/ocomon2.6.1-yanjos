@@ -2,7 +2,9 @@
 	
 	//carrega as configurações iniciais
 	include("../resources/config/geral.php");
-
+	require_once("../model/dao/GeneralDAO.class.php"); // Classe DAO
+	
+	$general= new GeneralDAO();
 	//Aqui importamos todas as classes que poderão ser usadas baseado nas solicitações que forem feitas.
 	require_once("../model/bean/Login.class.php"); // Classe Bean
 	require_once("../model/dao/LoginDAO.class.php"); // Classe DAO
@@ -22,7 +24,7 @@
 	$resultado = $usuarioDAO->autenticaUsuario($usuario);
 	
 		if($resultado){
-			$usuarioDAO->redirect($linkHome);
+			$general->redirect($linkHome);
 		}
 		else{
 			echo '<p class="red">Erro ao efetuar o login. Dados incorretos!</p>';

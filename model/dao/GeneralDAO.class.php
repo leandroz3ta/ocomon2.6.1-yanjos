@@ -1,11 +1,8 @@
 <?php
 
-require_once("../model/bean/Login.class.php");
 require_once("dbconfig.php"); // Classe conexao com o banco
 
-class LoginDAO{
-	
-	private $conn;
+class GeneralDAO{
 	
 	public function __construct()
 	{
@@ -14,7 +11,7 @@ class LoginDAO{
 		$this->conn = $db;
     }
 	
-	function autenticaUsuario($user){
+	/*function autenticaUsuario($user){
 		
 		try
 		{
@@ -36,8 +33,15 @@ class LoginDAO{
 			echo $e->getMessage();
 		}
 		
+	}*/
+	
+	public function redirect($url){
+		header("Location: $url");
 	}
 	
+	public function validateUser($url){
+		header("Location: $url");
+	}	
 
 }
 
