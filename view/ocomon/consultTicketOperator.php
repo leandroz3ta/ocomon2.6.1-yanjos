@@ -25,7 +25,7 @@ function format ( d ) {
 }
 
 $(document).ready(function() {
-	var dt = $('#example').DataTable( {
+	var dt = $('#ticketTable').DataTable( {
 		"processing": true,
 		"serverSide": true,
 		"ajax": "../../controller/dataTableController.php",
@@ -53,7 +53,7 @@ $(document).ready(function() {
 	// Array to track the ids of the details displayed rows
 	var detailRows = [];
 
-	$('#example tbody').on( 'click', 'tr td.details-control', function () {
+	$('#ticketTable tbody').on( 'click', 'tr td.details-control', function () {
 		var tr = $(this).closest('tr');
 		var row = dt.row( tr );
 		var idx = $.inArray( tr.attr('id'), detailRows );
@@ -91,7 +91,7 @@ $(document).ready(function() {
 	<div class="container" style="background: white;border-radius: 5px;width: 100%;">
 		<section>
 			<h1><span style="color: #232323;">Chamados</span></h1>
-			<table id="example" class="display" cellspacing="0" width="100%">
+			<table id="ticketTable" class="display" cellspacing="0" width="100%">
 				<thead>
 					<tr>
 						<th></th>

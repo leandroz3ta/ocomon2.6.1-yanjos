@@ -4,6 +4,8 @@ require_once("dbconfig.php"); // Classe conexao com o banco
 
 class GeneralDAO{
 	
+	public $conn;
+	
 	public function __construct()
 	{
 		$database = new Database();

@@ -2,9 +2,9 @@
 	
 	//carrega as configurações iniciais
 	include("../resources/config/geral.php");
-	require_once("../model/dao/GeneralDAO.class.php"); // Classe DAO
 	
-	$general= new GeneralDAO();
+	
+	//$general= new GeneralDAO();
 	//Aqui importamos todas as classes que poderão ser usadas baseado nas solicitações que forem feitas.
 	require_once("../model/bean/Login.class.php"); // Classe Bean
 	require_once("../model/dao/LoginDAO.class.php"); // Classe DAO
@@ -21,10 +21,10 @@
 	$usuarioDAO = new LoginDAO();
 	
 	//Passaremos para o método de autenticação da DAO um objeto da classe Usuário. Armazenaremos na variável $resultado o que este método retornar. 
-	$resultado = $usuarioDAO->autenticaUsuario($usuario);
+	$resultado = $usuarioDAO->authenticateUser($usuario);
 	
 		if($resultado){
-			$general->redirect($linkHome);
+			$usuarioDAO->redirect($linkHome);
 		}
 		else{
 			echo '<p class="red">Erro ao efetuar o login. Dados incorretos!</p>';
