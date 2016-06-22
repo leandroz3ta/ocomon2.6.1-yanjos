@@ -58,20 +58,48 @@ class TicketDAO{
 		return $order;
 	}
 	
+	
+	static function filter ( $request )	{		
+		$where = " AND (cod_status<>4 AND cod_status<>12) ";
+		if ( isset($request['search']) && $request['search']['value'] != '' ) {
+			$str = $request['search']['value'];
+			
+			$where .= " AND (`numero` LIKE '%".$str."%' OR `contato` LIKE '%".$str."%' )";
+
+		}
+
+		return $where;
+	}
+	
+	static function explodeArea ( $area )	{		
+		
+		$areaReturn='';
+		for ( $i=0, $j=count($area) ; $i<$j ; $i++ ) {
+			$n= $j-1;
+			if($i == $n)
+				$areaReturn.=$area[$i];
+			else
+				$areaReturn.=$area[$i].",";
+		}
+
+		return "cod_area IN (".$areaReturn.")";
+	}
+	
 	function operatorTicket($request,$area){
 		
 		try
 		{	
 			$limit = self::limit( $request);
 			$order = self::order( $request);
-			$where = " AND (cod_status<>4 AND cod_status<>12) ";
+			$where = self::filter( $request);
+			$area = self::explodeArea( $area);
 			
-			$stmt = $this->conn->prepare("SELECT * FROM all_tickets WHERE cod_area=:area".$where.$order.$limit);
-			$stmt->execute(array(':area'=>$area));
+			$stmt = $this->conn->prepare("SELECT * FROM all_tickets WHERE ".$area.$where.$order.$limit);
+			$stmt->execute();
 			$dataRow=$stmt->fetchAll();
 			
-			$stmt = $this->conn->prepare("SELECT * FROM all_tickets WHERE cod_area=:area".$where);
-			$stmt->execute(array(':area'=>$area));
+			$stmt = $this->conn->prepare("SELECT * FROM all_tickets WHERE ".$area.$where);
+			$stmt->execute();
 			$records=$stmt->rowCount();
 			
 			return array(

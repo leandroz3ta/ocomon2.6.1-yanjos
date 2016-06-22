@@ -8,9 +8,7 @@ include("../../resources/config/geral.php");
 <html>
 <head>
 	<meta charset="utf-8">
-	<link rel="shortcut icon" type="image/ico" href="http://www.datatables.net/favicon.ico">
 	<meta name="viewport" content="initial-scale=1.0, maximum-scale=2.0">
-	<title>DataTables example - Row details</title>
 
 		<?php
 		//carrega os CSS e JS utilizado na tabela
@@ -23,7 +21,7 @@ include("../../resources/config/geral.php");
 	
 
 function format ( d ) {
-	return d.descricao;
+	return d.descricao+"teste";
 }
 
 $(document).ready(function() {

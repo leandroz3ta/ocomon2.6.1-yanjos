@@ -8,8 +8,8 @@
 	require_once("../model/dao/TicketDAO.class.php"); // Classe DAO
 	
 	$ticketDAO = new TicketDAO();
-	
+	$area=array(1,3);
 	echo json_encode(
-		$ticketDAO->operatorTicket($_GET,1)
+		$ticketDAO->operatorTicket($_GET,$area)
 	);
 
