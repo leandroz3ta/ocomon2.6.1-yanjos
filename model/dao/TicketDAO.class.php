@@ -3,17 +3,9 @@
 require_once("../model/bean/Ticket.class.php");
 require_once("dbconfig.php"); // Classe conexao com o banco
 
-class TicketDAO{
+class TicketDAO extends GeneralDAO{
 	
-	private $conn;
-	
-	public function __construct()
-	{
-		$database = new Database();
-		$db = $database->dbConnection();
-		$this->conn = $db;
-    }
-	
+
 	function data_output ($data){
 		$out = array();
 		for ( $i=0, $ien=count($data) ; $i<$ien ; $i++ ) {

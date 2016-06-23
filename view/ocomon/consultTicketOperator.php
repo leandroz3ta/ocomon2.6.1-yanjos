@@ -1,6 +1,6 @@
 <?php
-//carrega as configurações iniciais
-include("../../resources/config/geral.php");
+//carrega as configuraÃ§Ãµes iniciais
+require_once("../../resources/config/geral.php");
 
 ?>
 
@@ -28,7 +28,7 @@ $(document).ready(function() {
 	var dt = $('#ticketTable').DataTable( {
 		"processing": true,
 		"serverSide": true,
-		"ajax": "../../controller/DataTableController.php",
+		"ajax": "<?php echo $controllerDataTable;?>",
 		"columns": [ 
 			{
 				"class":          "details-control",
@@ -95,8 +95,8 @@ $(document).ready(function() {
 				<thead>
 					<tr>
 						<th></th>
-						<th>Número</th>
-						<th>Área</th>
+						<th>NÃºmero</th>
+						<th>Ã�rea</th>
 						<th>Etiqueta</th>
 						<th>Problema</th>
 						<th>Contato</th>

@@ -11,6 +11,8 @@ class GeneralDAO{
 		$database = new Database();
 		$db = $database->dbConnection();
 		$this->conn = $db;
+		
+
     }
 	
 	/*function autenticaUsuario($user){
@@ -41,8 +43,11 @@ class GeneralDAO{
 		header("Location: $url");
 	}
 	
-	public function validateUser($url){
-		header("Location: $url");
+	public function validateUser($linkLogin){
+		if(!isset($_SESSION['userID'])){
+			self::redirect($linkLogin);
+		}
+		
 	}	
 
 }

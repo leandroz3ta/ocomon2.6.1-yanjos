@@ -1,13 +1,12 @@
 <?php
 
-require_once("../model/bean/Login.class.php");
 require_once("dbconfig.php"); // Classe conexao com o banco
 require_once("GeneralDAO.class.php"); // Classe DAO
 
 class LoginDAO extends GeneralDAO{
 	
 	
-	function authenticateUser($user){
+	function authenticateUser($user,$linkHome,$linkError){
 		
 		try
 		{
@@ -26,10 +25,10 @@ class LoginDAO extends GeneralDAO{
 				$_SESSION['userAdmin'] = $userRow['user_admin'];
 				$_SESSION['atende'] = $userRow['sis_atende'];
 				$_SESSION['allArea'] = self::areaUser( $userRow['user_id'] );
-				return true;
+				self::redirect($linkHome);
 			}
 			else
-				return false;
+				self::redirect($linkError);
 		}
 		catch(PDOException $e)
 		{
@@ -66,6 +65,22 @@ class LoginDAO extends GeneralDAO{
 		}		
 		
 		
+	}
+	
+	function logoff($linkLogin){
+	
+		try
+		{
+			session_destroy();
+			self::redirect($linkLogin);
+			
+		}
+		catch(PDOException $e)
+		{
+			echo $e->getMessage();
+		}
+	
+	
 	}
 
 }

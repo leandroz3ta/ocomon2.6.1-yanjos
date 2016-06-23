@@ -22,7 +22,7 @@ include("resources/config/geral.php");
 			
 	<body class="bg-cyan">
 		<div class="body body-s">		
-			<form action="controller/LoginController.php" id="formLogin" class="sky-form" method="post">
+			<form action="<?php echo $controllerLogin; ?>" id="formLogin" class="sky-form" method="post">
 				<header>Login</header>
 				
 				<fieldset>					
@@ -53,7 +53,7 @@ include("resources/config/geral.php");
 					
 				</fieldset>
 				<footer>
-					<button type="submit" class="button" name="buttonLogin"><?php echo $LANG["Login"]; ?></button>
+					<button type="submit" class="button" name="login"><?php echo $LANG["Login"]; ?></button>
 					<a href="#" class="button button-secondary"><?php echo $LANG["Register"]; ?></a>
 				</footer>
 			</form>			

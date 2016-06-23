@@ -32,5 +32,13 @@ $includeICONS=$include."resources/icons/";
 $linkHome=$file."view/geral/inicio.php";
 $linkTickets=$file."view/ocomon/consultTicketOperator.php";
 $linkOpenTicket=$file."view/ocomon/formOpenTicket.php";
+$linkError=$file."view/geral/error.php";
+$linkLogin=$file."index.php";
 
+
+
+$controllerLogin=$file."controller/LoginController.php";
+$controllerDataTable=$file."controller/DataTableController.php";
+
+$controllerGeneral=$include."controller/GeneralController.php";
 ?>

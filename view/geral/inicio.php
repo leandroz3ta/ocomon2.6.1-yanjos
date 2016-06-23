@@ -1,6 +1,6 @@
 <?php
 	//carrega as configurações iniciais
-	include("../../resources/config/geral.php");
+	require_once("../../resources/config/geral.php");
 
 	# Inicnando a variavel que vai indentificar se temos que exibir o modal ou não
 	$exibirModal = true;
@@ -15,6 +15,8 @@
 	# Seto nossa variavel de controle com o valor TRUE ( Verdadeiro)
 	$exibirModal = true;
 	}
+	
+	require_once($controllerGeneral);
 ?>
 <!DOCTYPE HTML>
 <html>
@@ -89,6 +91,7 @@
 			<li><a href="#" class="icon icon-menu" id="btn-menu">Menu</a></li>
 			<li><a href="<?php echo $linkOpenTicket;?>" onclick="return clique(this.href)">Abrir Chamado</a></li>
 			<li><a href="<?php echo $linkTickets;?>" onclick="return clique(this.href)">Meus Chamados</a></li>
+			<li><a href="<?php echo $controllerLogin;?>?logoff=1" >LogOff</a></li>
 		</ul>
 	</nav>
 
