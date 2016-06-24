@@ -26,6 +26,7 @@ function format ( d ) {
 
 $(document).ready(function() {
 	var dt = $('#ticketTable').DataTable( {
+		"scrollX": true,
 		"processing": true,
 		"serverSide": true,
 		"ajax": "<?php echo $controllerDataTable;?>",
@@ -76,6 +77,20 @@ $(document).ready(function() {
 		}
 	} );
 
+	$('#ticketTable tbody').on( 'click', 'tr', function () {
+        $(this).toggleClass('selected');
+    } );
+
+	$('a.toggle-vis').on( 'click', function (e) {
+        e.preventDefault();
+ 
+        // Get the column API object
+        var column = dt.column( $(this).attr('data-column') );
+ 
+        // Toggle the visibility
+        column.visible( ! column.visible() );
+    } );
+    
 	// On each draw, loop over the `detailRows` array and show any child rows
 	dt.on( 'draw', function () {
 		$.each( detailRows, function ( i, id ) {
@@ -91,12 +106,25 @@ $(document).ready(function() {
 	<div class="container" style="background: white;border-radius: 5px;width: 100%;">
 		<section>
 			<h1><span style="color: #232323;">Chamados</span></h1>
+			<div>
+				Colunas: 
+				<a class="toggle-vis" data-column="1">Número</a> - 
+				<a class="toggle-vis" data-column="2">Área</a> - 
+				<a class="toggle-vis" data-column="3">Etiqueta</a> - 
+				<a class="toggle-vis" data-column="4">Problema</a> - 
+				<a class="toggle-vis" data-column="5">Contato</a>
+				<a class="toggle-vis" data-column="6">Ramal</a>
+				<a class="toggle-vis" data-column="7">Setor</a>
+				<a class="toggle-vis" data-column="8">Status</a>
+				<a class="toggle-vis" data-column="9">SLA Resposta</a>
+				<a class="toggle-vis" data-column="10">SLA Solução</a>
+			</div>
 			<table id="ticketTable" class="display" cellspacing="0" width="100%">
 				<thead>
 					<tr>
 						<th></th>
-						<th>NÃºmero</th>
-						<th>Ã�rea</th>
+						<th>Número</th>
+						<th>Área</th>
 						<th>Etiqueta</th>
 						<th>Problema</th>
 						<th>Contato</th>
