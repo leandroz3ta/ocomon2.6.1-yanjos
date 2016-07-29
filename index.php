@@ -20,7 +20,7 @@ include("resources/config/geral.php");
 			
 		<script src="<?php echo $pathVALIDATE;?>/index.js"></script>
 			
-	<body class="bg-cyan">
+	<body class="bg-red">
 		<div class="body body-s">		
 			<form action="<?php echo $controllerLogin; ?>" id="formLogin" class="sky-form" method="post">
 				<header>Login</header>

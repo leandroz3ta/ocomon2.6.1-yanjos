@@ -1,11 +1,25 @@
 <?php
 //carrega as configurações iniciais
-include("../../resources/config/geral.php");
+require_once("../../resources/config/geral.php");
 
 ?>
 
-<script src="<?php echo $pathVALIDATE;?>/formOpenTicket.js"></script>
+<!DOCTYPE html>
+<html>
+	<head>
+		<?php
+			//carrega as configurações iniciais
+			include("../geral/head.php");			
+		?>
 
+		<script src="<?php echo $pathVALIDATE;?>/formOpenTicket.js"></script>
+	</head>
+	<body class="bg-red">
+	
+		<?php
+			//carrega as configurações iniciais
+			include("../geral/body.php");			
+		?>
 		<div class="body">		
 			<form action="demo-order-process.php" method="post" enctype="multipart/form-data" id="sky-form" class="sky-form">
 				<header><?php echo $LANG["OpenTicket"]; ?></header>
@@ -208,4 +222,5 @@ include("../../resources/config/geral.php");
 			</form>			
 		</div>
 		
-
+</body>
+</html>

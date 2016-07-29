@@ -24,7 +24,8 @@ class LoginDAO extends GeneralDAO{
 				$_SESSION['area'] = $userRow['area'];
 				$_SESSION['userAdmin'] = $userRow['user_admin'];
 				$_SESSION['atende'] = $userRow['sis_atende'];
-				$_SESSION['allArea'] = self::areaUser( $userRow['user_id'] );
+				$_SESSION['allArea'] = self::areaUser( $userRow['user_id'] );	
+				$_SESSION['modal'] = 1;
 				self::redirect($linkHome);
 			}
 			else
@@ -70,8 +71,10 @@ class LoginDAO extends GeneralDAO{
 	function logoff($linkLogin){
 	
 		try
-		{
+		{	
+			
 			session_destroy();
+					
 			self::redirect($linkLogin);
 			
 		}

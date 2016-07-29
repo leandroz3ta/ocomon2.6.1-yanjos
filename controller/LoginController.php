@@ -12,7 +12,7 @@
 		$usuario = new Login();
 		$usuario->setLogin($_REQUEST["formUsuario"]);
 		$usuario->setPassword($_REQUEST["formSenha"]);	
-		$usuarioDAO->authenticateUser($usuario,$linkHome,$linkError);
+		$usuarioDAO->authenticateUser($usuario,$linkTickets,$linkError);
 	}
 	
 	if(isset($_GET['logoff'])){

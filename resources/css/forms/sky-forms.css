@@ -199,7 +199,12 @@
 /**/
 /* radios and checkboxes */
 /**/
-.sky-form .radio,
+.sky-form .radio{
+	margin-bottom: 6px;
+	text-align: center;
+}
+
+
 .sky-form .checkbox {
 	margin-bottom: 4px;
 	padding-left: 27px;

@@ -6,15 +6,10 @@ require_once("../../resources/config/geral.php");
 
 <!DOCTYPE html>
 <html>
-<head>
-	<meta charset="utf-8">
-	<meta name="viewport" content="initial-scale=1.0, maximum-scale=2.0">
-
+	<head>
 		<?php
-		//carrega os CSS e JS utilizado na tabela
-		include($includeCSS."dataTable.php");
-		include($includeJS."dataTable.php");
-
+			//carrega as configuraÃ§Ãµes iniciais
+			include("../geral/head.php");			
 		?>
 		
 	<script type="text/javascript" language="javascript" class="init">
@@ -101,7 +96,12 @@ $(document).ready(function() {
 
 	</script>
 </head>
-<body class="dt-example">
+<body class="bg-red">
+	
+		<?php
+			//carrega as configuraÃ§Ãµes iniciais
+			include("../geral/body.php");			
+		?>
 	
 	<div class="container" style="background: white;border-radius: 5px;width: 100%;">
 		<section>

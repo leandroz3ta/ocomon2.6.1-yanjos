@@ -19,7 +19,7 @@ include("../../resources/config/geral.php");
 		?>
 	</head>
 	
-	<body class="bg-purple">
+	<body class="bg-red">
 		<div class="body">		
 			<form action="<?php echo $linkLogin; ?>" id="sky-form" class="sky-form">
 				<header>Error</header>
