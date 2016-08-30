@@ -19,7 +19,7 @@ $(function()
 					// Rules for form validation
 					rules:
 					{
-						name:
+						teste:
 						{
 							required: true
 						},
@@ -45,7 +45,7 @@ $(function()
 					// Messages for form validation
 					messages:
 					{
-						name:
+						teste:
 						{
 							required: 'Please enter your name'
 						},

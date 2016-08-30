@@ -1,12 +1,12 @@
 <?php
 
-require_once("dbconfig.php"); // Classe conexao com o banco
-require_once("GeneralDAO.class.php"); // Classe DAO
+include_once("dbconfig.php"); // Classe conexao com o banco
+include_once("GeneralDAO.class.php"); // Classe DAO
 
 class LoginDAO extends GeneralDAO{
 	
 	
-	function authenticateUser($user,$linkHome,$linkError){
+	function authenticateUser($user){
 		
 		try
 		{
@@ -15,21 +15,7 @@ class LoginDAO extends GeneralDAO{
 			$stmt = $this->conn->prepare("SELECT * FROM authenticate_user WHERE nivel<>5 AND login=:login and password=:password ");
 			$stmt->execute(array(':login'=>$login, ':password'=>$password));
 			$userRow=$stmt->fetch(PDO::FETCH_ASSOC);
-			if($stmt->rowCount() == 1)
-			{
-				session_start();
-				$_SESSION['user'] = $userRow['login'];
-				$_SESSION['userID'] = $userRow['user_id'];
-				$_SESSION['nivel'] = $userRow['nivel'];
-				$_SESSION['area'] = $userRow['area'];
-				$_SESSION['userAdmin'] = $userRow['user_admin'];
-				$_SESSION['atende'] = $userRow['sis_atende'];
-				$_SESSION['allArea'] = self::areaUser( $userRow['user_id'] );	
-				$_SESSION['modal'] = 1;
-				self::redirect($linkHome);
-			}
-			else
-				self::redirect($linkError);
+			return $userRow;
 		}
 		catch(PDOException $e)
 		{

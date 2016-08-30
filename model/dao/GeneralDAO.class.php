@@ -1,6 +1,6 @@
 <?php
 
-require_once("dbconfig.php"); // Classe conexao com o banco
+include_once("dbconfig.php"); // Classe conexao com o banco
 
 class GeneralDAO{
 	

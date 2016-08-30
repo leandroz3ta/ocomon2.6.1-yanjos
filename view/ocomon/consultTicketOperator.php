@@ -1,6 +1,6 @@
 <?php
 //carrega as configuraÃ§Ãµes iniciais
-require_once("../../resources/config/geral.php");
+include_once("../../resources/config/geral.php");
 
 ?>
 
@@ -9,7 +9,10 @@ require_once("../../resources/config/geral.php");
 	<head>
 		<?php
 			//carrega as configuraÃ§Ãµes iniciais
-			include("../geral/head.php");			
+			include_once("../geral/head.php");		
+			//carrega os CSS e JS utilizado na tabela
+			include($includeCSS."dataTable.php");
+			include($includeJS."dataTable.php");
 		?>
 		
 	<script type="text/javascript" language="javascript" class="init">
@@ -21,10 +24,13 @@ function format ( d ) {
 
 $(document).ready(function() {
 	var dt = $('#ticketTable').DataTable( {
+		
+		"lengthMenu": [[5, 25, 50, -1], [5, 25, 50, "All"]],
 		"scrollX": true,
 		"processing": true,
 		"serverSide": true,
 		"ajax": "<?php echo $controllerDataTable;?>",
+		"stateSave": true,
 		"columns": [ 
 			{
 				"class":          "details-control",
@@ -43,7 +49,32 @@ $(document).ready(function() {
 			{ "data": "slaR" },
 			{ "data": "slaS" }
 		],
-		"order": [[1, 'desc']]
+		"order": [[1, 'desc']],
+		initComplete: function () {
+			this.api().columns('.select-filter').every( function () {
+				var column = this;
+				var select = $('<select><option value=""></option></select>')
+					.appendTo( $(column.footer()) )
+					.on( 'change', function () {
+						var val = $.fn.dataTable.util.escapeRegex(
+							$(this).val()
+						);
+
+						column
+							.search( val ? val : '', true, false )
+							.draw();
+					} );
+
+				column.data().unique().sort().each( function ( d, j ) {
+				    if(column.search() === d){
+				        select.append( '<option value="'+d+'" selected="selected">'+d+'</option>' )
+				    } else {
+				        select.append( '<option value="'+d+'">'+d+'</option>' )
+				    }
+				} );
+			} );
+		}
+		
 	} );
 
 	// Array to track the ids of the details displayed rows
@@ -100,7 +131,7 @@ $(document).ready(function() {
 	
 		<?php
 			//carrega as configuraÃ§Ãµes iniciais
-			include("../geral/body.php");			
+			include_once("../geral/body.php");			
 		?>
 	
 	<div class="container" style="background: white;border-radius: 5px;width: 100%;">
@@ -124,17 +155,32 @@ $(document).ready(function() {
 					<tr>
 						<th></th>
 						<th>Número</th>
-						<th>Área</th>
+						<th class="select-filter">Área</th>
 						<th>Etiqueta</th>
 						<th>Problema</th>
 						<th>Contato</th>
 						<th>Ramal</th>
 						<th>Setor</th>
-						<th>Status</th>
-						<th>SLA Resposta</th>	
-						<th>SLA Solução</th>						
+						<th class="select-filter">Status</th>
+						<th class="select-filter">SLA Resposta</th>	
+						<th class="select-filter">SLA Solução</th>						
 					</tr>
 				</thead>
+				<tfoot>
+					<tr>
+						<th></th>
+						<th></th>
+						<th class="select-filter"></th>
+						<th></th>
+						<th></th>
+						<th></th>
+						<th></th>
+						<th></th>
+						<th class="select-filter"></th>
+						<th class="select-filter"></th>	
+						<th class="select-filter"></th>
+					</tr>
+				</tfoot>
 			</table>			
 		</section>
 	</div>

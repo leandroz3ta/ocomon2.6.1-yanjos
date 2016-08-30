@@ -1,6 +1,6 @@
 <?php
 //carrega as configurações iniciais
-include("resources/config/geral.php");
+include_once("resources/config/geral.php");
 
 ?>
 

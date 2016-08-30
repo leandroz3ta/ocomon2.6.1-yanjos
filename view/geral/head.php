@@ -8,9 +8,7 @@ include($includeJS."menu.php");
 //carrega os CSS e JS utilizado no formulario
 include($includeCSS."forms.php");
 include($includeJS."forms.php");
-//carrega os CSS e JS utilizado na tabela
-include($includeCSS."dataTable.php");
-include($includeJS."dataTable.php");
+
 
 # Verificando se não existe o cookie
 if($_SESSION['atende'] == 1)

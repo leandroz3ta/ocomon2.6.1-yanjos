@@ -30,7 +30,7 @@ $includeICONS=$include."resources/icons/";
 
 //caminho das paginas
 $linkTickets=$file."view/ocomon/consultTicketOperator.php";
-$linkOpenTicket=$file."view/ocomon/formOpenTicket.php";
+$linkOpenTicket=$file."view/ocomon/openTicket.php";
 $linkError=$file."view/geral/error.php";
 $linkLogin=$file."index.php";
 $linkConfigGeral=$file."view/admin/configGeral.php";
@@ -38,6 +38,7 @@ $linkConfigGeral=$file."view/admin/configGeral.php";
 
 $controllerLogin=$file."controller/LoginController.php";
 $controllerDataTable=$file."controller/DataTableController.php";
+$controllerSelectOption=$file."controller/SelectOptionController.php";
 
 $controllerGeneral=$include."controller/GeneralController.php";
 ?>

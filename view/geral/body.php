@@ -1,7 +1,7 @@
 <?php
 	//carrega as configurações iniciais
-	require_once("../../resources/config/geral.php");	
-	require_once($controllerGeneral);
+	include_once("../../resources/config/geral.php");	
+	include_once($controllerGeneral);
 ?>
 <!DOCTYPE HTML>
 

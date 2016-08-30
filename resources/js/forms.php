@@ -2,6 +2,7 @@
 		<script src="<?php echo $pathJS;?>forms/jquery.form.min.js"></script>
 		<script src="<?php echo $pathJS;?>forms/jquery.validate.min.js"></script>
 		<script src="<?php echo $pathJS;?>forms/jquery.modal.js"></script>
+		<script src="<?php echo $pathJS;?>forms/jquery-ui.min.js"></script>
 		<!--[if lt IE 10]>
 			<script src="<?php echo $pathJS;?>forms/jquery.placeholder.min.js"></script>
 		<![endif]-->		
