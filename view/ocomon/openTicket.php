@@ -251,23 +251,7 @@ include_once("../../resources/config/geral.php");
 				</footer>				
 			</form>			
 		</div>
-		<!--  <script src="<?php echo $pathVALIDATE;?>/formOpenTicket.js"></script>  -->
-		<script type="text/javascript">
-		$(function()
-				{
-					// Datepickers
-					$('#start').datepicker({
-						dateFormat: 'dd/mm/yy',
-						prevText: '<i class="fa fa-chevron-left"></i>',
-						nextText: '<i class="fa fa-chevron-right"></i>',
-					});
-					$('#finish').datepicker({
-						dateFormat: 'dd/mm/yy',
-						prevText: '<i class="fa fa-chevron-left"></i>',
-						nextText: '<i class="fa fa-chevron-right"></i>',
-
-					});
-				});
-		</script>
+		<script src="<?php echo $pathVALIDATE;?>/formOpenTicket.js"></script> 
+		
 </body>
 </html>
