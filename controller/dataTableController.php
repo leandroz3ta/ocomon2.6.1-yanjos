@@ -2,10 +2,10 @@
 
 	//carrega as configurações iniciais
 	include_once("../resources/config/geral.php");
-	include_once("../model/dao/GeneralDAO.class.php"); // Classe DAO
+	include_once($controllerGeneral); // Classe DAO
 
 	//Aqui importamos todas as classes que poderão ser usadas baseado nas solicitações que forem feitas.
-	include_once("../model/dao/DataTableDAO.class.php"); // Classe DAO
+	include_once($daoDataTable); // Classe DAO
 	
 	
 	$dataTableDAO = new DataTableDAO();

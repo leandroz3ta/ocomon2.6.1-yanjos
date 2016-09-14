@@ -9,7 +9,7 @@ include_once("../../resources/config/geral.php");
 	<head>
 		<?php
 			//carrega as configuraÃ§Ãµes iniciais
-			include_once("../geral/head.php");		
+			include_once($includeHead);		
 			//carrega os CSS e JS utilizado na tabela
 			include($includeCSS."dataTable.php");
 			include($includeJS."dataTable.php");
@@ -131,7 +131,7 @@ $(document).ready(function() {
 	
 		<?php
 			//carrega as configuraÃ§Ãµes iniciais
-			include_once("../geral/body.php");			
+			include_once($includeBody);			
 		?>
 	
 	<div class="container" style="background: white;border-radius: 5px;width: 100%;">

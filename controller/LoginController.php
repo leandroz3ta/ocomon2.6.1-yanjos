@@ -3,8 +3,8 @@
 	//carrega as configurações iniciais
 	include_once("../resources/config/geral.php");
 	
-	include_once("../model/bean/Login.class.php"); // Classe Bean
-	include_once("../model/dao/LoginDAO.class.php"); // Classe DAO
+	include_once($daoLogin); // Classe Bean
+	include_once($beanLogin); // Classe DAO
 	
 	$usuarioDAO = new LoginDAO();
 	

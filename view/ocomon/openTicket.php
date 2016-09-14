@@ -1,7 +1,7 @@
 <?php
 //carrega as configurações iniciais
 include_once("../../resources/config/geral.php");
-
+include_once($controllerSelectOption);
 
 ?>
 
@@ -13,7 +13,7 @@ include_once("../../resources/config/geral.php");
 			include("../geral/head.php");			
 		?>
 		
-		<script type="text/javascript">
+		<!-- <script type="text/javascript">
 		$(document).ready(function() {			
 			    $.ajax({			    
 			        url : "<?php echo $controllerSelectOption;?>?area=1",			    
@@ -40,7 +40,7 @@ include_once("../../resources/config/geral.php");
 			    });
 			    
 			});
-		</script>
+		</script> -->
 		
 		
 	</head>
@@ -70,7 +70,7 @@ include_once("../../resources/config/geral.php");
 							<label class="label"><?php echo $LANG["Name"]; ?></label>
 							<label class="select">
 								<select name="interested">
-									<option value="none" >Admin</option>
+									<option value="none" a="teste">Admin</option>
 								</select>
 								<i></i>
 							</label>
@@ -79,7 +79,12 @@ include_once("../../resources/config/geral.php");
 						<label class="label"><?php echo $LANG["Subsidiary"]; ?></label>
 							<label class="select">
 								<select name="subsidiary" id="subsidiary" >
-									
+								<?php
+									foreach($filial as $row)
+									{									  
+									  echo "<option value='".$row['inst_cod']."'>".utf8_encode($row['inst_nome'])."</option>";
+									} 
+								?>
 								</select>
 								<i></i>
 							</label>
@@ -108,7 +113,12 @@ include_once("../../resources/config/geral.php");
 						<label class="label"><?php echo $LANG["Department"]; ?></label>
 							<label class="select">
 								<select name="interested">
-									<option value="none" >RH</option>
+								<?php
+									foreach($localizacao as $row)
+									{									  
+									  echo "<option value='".$row['loc_id']."'>".utf8_encode($row['local'])."</option>";
+									} 
+								?>
 								</select>
 								<i></i>
 							</label>
@@ -185,7 +195,13 @@ include_once("../../resources/config/geral.php");
 						<label class="label"><?php echo $LANG["ResponsibleArea"]; ?></label>
 							<label class="select">
 								<select name="interested" id="area">
-									<option value="none" >HelpDesk</option>
+								<?php
+									foreach($area as $row)
+									{									  
+									  echo "<option value='".$row['sis_id']."'>".utf8_encode($row['sistema'])."</option>";
+									} 
+								?>
+									
 								</select>
 								<i></i>
 							</label>
