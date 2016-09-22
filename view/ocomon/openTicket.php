@@ -1,7 +1,7 @@
 <?php
 //carrega as configura√ß√µes iniciais
 include_once("../../resources/config/geral.php");
-include_once($controllerSelectOption);
+include_once($controllerOpenTicket);
 
 ?>
 
@@ -42,7 +42,57 @@ include_once($controllerSelectOption);
 			});
 		</script> -->
 		
-		
+		<script type="text/javascript">
+	
+		$(document).ready(function(){
+			$("#responsibleArea").change(function() {
+				 var responsibleArea = $( "#responsibleArea" ).val();	
+				 	$("#subProblema").empty();
+		            $("#SLA").empty();
+		            $("#tipo").empty();
+				    $.ajax({			    
+				    	type: "POST",				    	
+				        url : "<?php echo $controllerSelectOption;?>",			    
+				        dataType : "json",	
+				        data: {responsibleArea: responsibleArea}, 		    
+				        success : function(retorno){			       
+				            var html = "<option value='0'>Selecione...</option>";	 
+				            for($i=0; $i < retorno.length; $i++){			           
+				                html += "<option value="+retorno[$i].prob_id+">"+retorno[$i].problema+"</option>";
+				            }
+				            $("#problem").html(html);
+				            
+				        }
+				    });
+			}); 
+
+			$("#problem").change(function() {
+				 var problem = $( "#problem" ).val();	
+				 
+				    $.ajax({			    
+				    	type: "POST",				    	
+				        url : "<?php echo $controllerSelectOption;?>",			    
+				        dataType : "json",	
+				        data: {problem: problem}, 		    
+				        success : function(retorno){
+				        			       
+				            var radio = "";	 
+				            var SLA = "";
+				            var tipo = "";	 
+				            for($i=0; $i < retorno.length; $i++){			           
+				            	radio += "<label class='radio'><input type='radio' name='subProblem' value="+retorno[$i].prob_id+"><i></i>"+retorno[$i].probt1_desc+"</label>";
+				            	SLA += "<label class='label'>"+retorno[$i].slas_desc+"</label>";
+				            	tipo += "<label class='label'>"+retorno[$i].probt2_desc+"</label>";
+				            }
+				            $("#subProblema").html(radio);
+				            $("#SLA").html(SLA);
+				            $("#tipo").html(tipo);
+				        }
+				    });
+			}); 
+			
+		});
+		</script> 
 	</head>
 	<body class="bg-red">
 	
@@ -67,24 +117,19 @@ include_once($controllerSelectOption);
 
 					<div class="row">
 						<section class="col col-6">
+							<label class="label"><?php echo $LANG["Tag"]; ?></label>
+							<label class="input">
+								<i class="icon-append fa fa-user"></i>
+								<input type="text" name="name" placeholder="Etiqueta">
+								<!-- criar funÁ„o para preencher filial e departamento do produto no onblur -->
+							</label>
+						</section>						
+						<section class="col col-6">
 							<label class="label"><?php echo $LANG["Name"]; ?></label>
 							<label class="select">
-								<select name="interested">
+								<select name="name" id="name">
+								<!-- criar funÁ„o, se for operador traz a lista completa, se for usuario apenas o nome ee bloquear campo -->
 									<option value="none" a="teste">Admin</option>
-								</select>
-								<i></i>
-							</label>
-						</section>
-						<section class="col col-6">
-						<label class="label"><?php echo $LANG["Subsidiary"]; ?></label>
-							<label class="select">
-								<select name="subsidiary" id="subsidiary" >
-								<?php
-									foreach($filial as $row)
-									{									  
-									  echo "<option value='".$row['inst_cod']."'>".utf8_encode($row['inst_nome'])."</option>";
-									} 
-								?>
 								</select>
 								<i></i>
 							</label>
@@ -93,6 +138,7 @@ include_once($controllerSelectOption);
 					
 					<div class="row">
 						<section class="col col-6">
+						<!-- funÁ„o para trazer o email do usuario; atualizar sempre que o campo nome for alterado se for operador -->
 						<label class="label"><?php echo $LANG["Email"]; ?></label>
 							<label class="input">
 								<i class="icon-append fa fa-envelope-o"></i>
@@ -110,9 +156,26 @@ include_once($controllerSelectOption);
 
 					<div class="row">
 						<section class="col col-6">
+						<label class="label"><?php echo $LANG["Subsidiary"]; ?></label>
+							<label class="select">
+								<select name="subsidiary" id="subsidiary" >
+								<option value="0">Selecione...</option>
+								<?php
+									foreach($filial as $row)
+									{									  
+									  echo "<option value='".$row['inst_cod']."'>".utf8_encode($row['inst_nome'])."</option>";
+									} 
+								?>
+								</select>
+								<i></i>
+							</label>
+						</section>
+						
+						<section class="col col-6">
 						<label class="label"><?php echo $LANG["Department"]; ?></label>
 							<label class="select">
-								<select name="interested">
+								<select name="department" id="department">
+								<option value="0">Selecione...</option>
 								<?php
 									foreach($localizacao as $row)
 									{									  
@@ -123,16 +186,7 @@ include_once($controllerSelectOption);
 								<i></i>
 							</label>
 						</section>
-						<section class="col col-6">
-							<label class="label"><?php echo $LANG["Tag"]; ?></label>
-							<label class="input">
-								<i class="icon-append fa fa-user"></i>
-								<input type="text" name="name" placeholder="Etiqueta">
-								<img style=" position: relative; top: 5px;" title="Consulta os equipamentos cadastrados para esse Departamento!" width="25" height="25" src="http://localhost/ocomon2.6.1-yanjos/includes/icons/forms/search.png" onclick="teste()" border="0">
-								<img style=" position: relative; top: 5px;" title="Consulta os equipamentos cadastrados para esse Departamento!" width="25" height="25" src="http://localhost/ocomon2.6.1-yanjos/includes/icons/forms/clock.png" onclick="teste()"border="0">
-							</label>
-
-						</section>
+						
 					</div>
 
 					<div class="row">
@@ -157,14 +211,15 @@ include_once($controllerSelectOption);
 							<label class="label"><?php echo $LANG["OpenDate"]; ?></label>
 							<label class="input">
 								<i class="icon-append fa fa-calendar"></i>
-								<input type="text" name="start" id="start" value="14/07/2016">
+								<input type="text" name="openDate" id="openDate" value="<?php echo date("d/m/Y");
+?>">
 							</label>
 						</section>
 						<section class="col col-6">
 							<label class="label"><?php echo $LANG["ScheduleTicket"]; ?></label>
 							<label class="input">
 								<i class="icon-append fa fa-calendar"></i>
-								<input type="text" name="finish" id="finish" placeholder="Data Agendamento">
+								<input type="text" name="scheduleTicket" id="scheduleTicket" placeholder="Data Agendamento">
 							</label>
 						</section>
 					</div>
@@ -182,8 +237,8 @@ include_once($controllerSelectOption);
 						<section class="col col-6">
 						<label class="label"><?php echo $LANG["Forward"]; ?></label>
 							<label class="select">
-								<select name="budget">
-									<option value="0" >Analista X</option>
+								<select name="forward">
+									<option value="0">Selecione...</option>
 								</select>
 								<i></i>
 							</label>
@@ -194,7 +249,8 @@ include_once($controllerSelectOption);
 						<section class="col col-6">
 						<label class="label"><?php echo $LANG["ResponsibleArea"]; ?></label>
 							<label class="select">
-								<select name="interested" id="area">
+								<select name="responsibleArea" id="responsibleArea">
+								<option value="0">Selecione...</option>
 								<?php
 									foreach($area as $row)
 									{									  
@@ -210,7 +266,7 @@ include_once($controllerSelectOption);
 						<label class="label"><?php echo $LANG["Problem"]; ?></label>
 							<label class="select">
 								<select name="problem" id="problem">
-									
+									<option value="0">Selecione a area</option>
 								</select>
 								<i></i>
 							</label>
@@ -221,18 +277,21 @@ include_once($controllerSelectOption);
 						<div class="row">
 							<div class="col col-3">
 								<label class="label"><?php echo $LANG["SubProblem"]; ?></label>
-								<label class="radio"><input type="radio" name="checkbox"><i></i>Sem Tonner</label>
-								<label class="radio"><input type="radio" name="checkbox"><i></i>Papel Stolado</label>
+								<div id="subProblema">
+									
+								</div>
 							</div>
 							<div class="col col-3">
 								<label class="label"><?php echo $LANG["SLA"]; ?></label>
-								<label class="label">4 Horas</label>
-								<label class="label">2 Horas</label>
+								<div id="SLA">
+									
+								</div>
 							</div>
-							<div class="col col-3">
+							<div class="col col-3">								
 								<label class="label">Tipo</label>
-								<label class="label">Solicita√ß√£o</label>
-								<label class="label">Problema</label>
+								<div id="tipo">
+									
+								</div>	
 							</div>
 						</div>
 					</section>

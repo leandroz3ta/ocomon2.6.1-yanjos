@@ -40,7 +40,7 @@ $controllerLogin=$file."controller/LoginController.php";
 $controllerDataTable=$file."controller/DataTableController.php";
 $daoDataTable=$include."model/dao/DataTableDAO.class.php";
 
-$controllerSelectOption=$include."controller/SelectOptionController.php";
+$controllerSelectOption=$file."controller/SelectOptionController.php";
 $controllerGeneral=$include."controller/GeneralController.php";
 $daoGeneral=$include."model/dao/GeneralDAO.class.php";
 $includeBody=$include."view/geral/body.php";
@@ -50,4 +50,6 @@ $includeHead=$include."view/geral/head.php";
 $daoLogin=$include."model/dao/LoginDAO.class.php";
 $beanLogin=$include."model/bean/Login.class.php";
 $daoSelectOption=$include."model/dao/SelectOptionDAO.class.php";
+
+$controllerOpenTicket=$include."controller/OpenTicketController.php";
 ?>

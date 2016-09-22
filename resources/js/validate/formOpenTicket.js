@@ -1,12 +1,13 @@
 $(function()
 			{
 				// Datepickers
-				$('#start').datepicker({
+				$('#openDate').datepicker({
 					dateFormat: 'dd/mm/yy',
 					prevText: '<i class="fa fa-chevron-left"></i>',
 					nextText: '<i class="fa fa-chevron-right"></i>',
 				});
-				$('#finish').datepicker({
+				
+				$('#scheduleTicket').datepicker({
 					dateFormat: 'dd/mm/yy',
 					prevText: '<i class="fa fa-chevron-left"></i>',
 					nextText: '<i class="fa fa-chevron-right"></i>',
