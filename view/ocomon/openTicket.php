@@ -1,8 +1,17 @@
 <?php
 //carrega as configuraÃ§Ãµes iniciais
 include_once("../../resources/config/geral.php");
-include_once($controllerOpenTicket);
+include_once($daoSelectOption); // Classe DAO
 
+$selectOptionDAO = new SelectOptionDAO();
+
+$area = $selectOptionDAO->area();
+
+$filial = $selectOptionDAO->filial();
+
+$localizacao = $selectOptionDAO->localizacao();
+
+$user = $selectOptionDAO->allUsers();
 ?>
 
 <!DOCTYPE html>
@@ -50,30 +59,40 @@ include_once($controllerOpenTicket);
 				 	$("#subProblema").empty();
 		            $("#SLA").empty();
 		            $("#tipo").empty();
+		            
+		            
 				    $.ajax({			    
 				    	type: "POST",				    	
 				        url : "<?php echo $controllerSelectOption;?>",			    
 				        dataType : "json",	
 				        data: {responsibleArea: responsibleArea}, 		    
 				        success : function(retorno){			       
-				            var html = "<option value='0'>Selecione...</option>";	 
-				            for($i=0; $i < retorno.length; $i++){			           
-				                html += "<option value="+retorno[$i].prob_id+">"+retorno[$i].problema+"</option>";
-				            }
-				            $("#problem").html(html);
+				            var problema = "<option value='0'>Selecione...</option>";	 
+				            for($i=0; $i < retorno[0].length; $i++){			           
+				            	problema += "<option value="+retorno[0][$i].probt0_cod+">"+retorno[0][$i].probt0_desc+"</option>";
+				            }				            
+				            $("#problem").html(problema);
 				            
+				            var encaminhar = "<option value='0'>Selecione...</option>";	
+				            for($i=0; $i < retorno[1].length; $i++){			           
+				            	encaminhar += "<option value="+retorno[1][$i].user_id+">"+retorno[1][$i].nome+"</option>";
+				            }
+				            $("#forward").html(encaminhar);
 				        }
 				    });
+
+				    
+				    
 			}); 
 
 			$("#problem").change(function() {
 				 var problem = $( "#problem" ).val();	
-				 
+				 var responsibleAreaSub = $( "#responsibleArea" ).val();	
 				    $.ajax({			    
 				    	type: "POST",				    	
 				        url : "<?php echo $controllerSelectOption;?>",			    
 				        dataType : "json",	
-				        data: {problem: problem}, 		    
+				        data: {problem: problem, responsibleAreaSub: responsibleAreaSub}, 		    
 				        success : function(retorno){
 				        			       
 				            var radio = "";	 
@@ -87,6 +106,23 @@ include_once($controllerOpenTicket);
 				            $("#subProblema").html(radio);
 				            $("#SLA").html(SLA);
 				            $("#tipo").html(tipo);
+				        }
+				    });
+			}); 
+
+
+			$("#name").change(function() {
+				 var idName = $( "#name" ).val();	
+				 
+				    $.ajax({			    
+				    	type: "POST",				    	
+				        url : "<?php echo $controllerSelectOption;?>",			    
+				        dataType : "json",	
+				        data: {idName: idName}, 		    
+				        success : function(retorno){
+				        	var email = retorno[0].email;				            
+				            $("#email").val(email);
+				            
 				        }
 				    });
 			}); 
@@ -106,6 +142,72 @@ include_once($controllerOpenTicket);
 					
 				<fieldset>					
 					
+					<div class="row">
+						<section class="col col-6">
+						<label class="label"><?php echo $LANG["ResponsibleArea"]; ?></label>
+							<label class="select">
+								<select name="responsibleArea" id="responsibleArea">
+								<option value="0">Selecione...</option>
+								<?php
+									foreach($area as $row)
+									{									  
+									  echo "<option value='".$row['sis_id']."'>".utf8_encode($row['sistema'])."</option>";
+									} 
+								?>
+									
+								</select>
+								<i></i>
+							</label>
+						</section>
+						<section class="col col-6">
+						<label class="label"><?php echo $LANG["Problem"]; ?></label>
+							<label class="select">
+								<select name="problem" id="problem">
+									<option value="0">Selecione a area</option>
+								</select>
+								<i></i>
+							</label>
+						</section>
+					</div>
+					
+					<section>
+						<div class="row">
+							<div class="col col-4">
+								<label class="label"><?php echo $LANG["SubProblem"]; ?></label>
+								<div id="subProblema">
+									
+								</div>
+							</div>
+							<div class="col col-2">
+								<label class="label"><?php echo $LANG["SLA"]; ?></label>
+								<div id="SLA">
+									
+								</div>
+							</div>
+							<div class="col col-3">								
+								<label class="label">Tipo</label>
+								<div id="tipo">
+									
+								</div>	
+							</div>
+						</div>
+					</section>
+
+					
+					<section>
+						<label class="textarea">
+							<i class="icon-append fa fa-comment"></i>
+							<textarea rows="5" name="comment" placeholder="Descreva o problema"></textarea>
+						</label>
+					</section>
+
+					<section>
+						<label for="file" class="input input-file">
+							<div class="button"><input type="file" name="file" multiple onchange="this.parentNode.nextSibling.value = this.value"><?php echo $LANG["Find"]; ?></div><input type="text" placeholder="Include some file" readonly>
+							<img style=" position: relative; top: 5px;" width="25" height="25" src="http://localhost/ocomon2.6.1-yanjos/includes/icons/forms/icon_more.png" onclick="teste()" border="0">
+						</label>
+					</section>
+					
 						<section>
 							<label class="label"><?php echo $LANG["Operator"]; ?></label>
 							<label class="input">
@@ -118,18 +220,25 @@ include_once($controllerOpenTicket);
 					<div class="row">
 						<section class="col col-6">
 							<label class="label"><?php echo $LANG["Tag"]; ?></label>
-							<label class="input">
-								<i class="icon-append fa fa-user"></i>
+							<label class="input">								
 								<input type="text" name="name" placeholder="Etiqueta">
-								<!-- criar função para preencher filial e departamento do produto no onblur -->
+								<!-- criar uma função para verificar o nome do pc e ja trazer as informações necessarias, departamento, filial, adicionar um campo só para visualização do nome recuperado.
+								criar função para preencher filial e departamento do produto no onblur e nome -->
 							</label>
 						</section>						
 						<section class="col col-6">
 							<label class="label"><?php echo $LANG["Name"]; ?></label>
 							<label class="select">
-								<select name="name" id="name">
-								<!-- criar função, se for operador traz a lista completa, se for usuario apenas o nome ee bloquear campo -->
-									<option value="none" a="teste">Admin</option>
+								<select name="name" id="name"> 
+									<?php
+									foreach($user as $row)
+									{	
+										if($row['user_id'] == $_SESSION['userID'])
+									  		echo "<option value='".$row['user_id']."' selected>".utf8_encode($row['nome'])."</option>";
+										else
+											echo "<option value='".$row['user_id']."'>".utf8_encode($row['nome'])."</option>";
+									} 
+								?>
 								</select>
 								<i></i>
 							</label>
@@ -142,7 +251,7 @@ include_once($controllerOpenTicket);
 						<label class="label"><?php echo $LANG["Email"]; ?></label>
 							<label class="input">
 								<i class="icon-append fa fa-envelope-o"></i>
-								<input type="email" name="email" placeholder="E-mail">
+								<input type="email" name="email" id="email" placeholder="E-mail" value="<?php echo $_SESSION['email']; ?>">
 							</label>
 						</section>
 						<section class="col col-6">
@@ -199,8 +308,7 @@ include_once($controllerOpenTicket);
 						</section>
 						<section class="col col-6">
 						<label class="label"><?php echo $LANG["Replicate"]; ?></label>
-							<label class="input">
-								<i class="icon-append fa fa-phone"></i>
+							<label class="input">								
 								<input type="tel" name="phone" value="0">
 							</label>
 						</section>
@@ -211,8 +319,7 @@ include_once($controllerOpenTicket);
 							<label class="label"><?php echo $LANG["OpenDate"]; ?></label>
 							<label class="input">
 								<i class="icon-append fa fa-calendar"></i>
-								<input type="text" name="openDate" id="openDate" value="<?php echo date("d/m/Y");
-?>">
+								<input type="text" name="openDate" id="openDate" value="<?php echo date("d/m/Y");?>" disabled>
 							</label>
 						</section>
 						<section class="col col-6">
@@ -237,7 +344,7 @@ include_once($controllerOpenTicket);
 						<section class="col col-6">
 						<label class="label"><?php echo $LANG["Forward"]; ?></label>
 							<label class="select">
-								<select name="forward">
+								<select name="forward" id="forward">
 									<option value="0">Selecione...</option>
 								</select>
 								<i></i>
@@ -245,71 +352,7 @@ include_once($controllerOpenTicket);
 						</section>
 					</div>
 
-					<div class="row">
-						<section class="col col-6">
-						<label class="label"><?php echo $LANG["ResponsibleArea"]; ?></label>
-							<label class="select">
-								<select name="responsibleArea" id="responsibleArea">
-								<option value="0">Selecione...</option>
-								<?php
-									foreach($area as $row)
-									{									  
-									  echo "<option value='".$row['sis_id']."'>".utf8_encode($row['sistema'])."</option>";
-									} 
-								?>
-									
-								</select>
-								<i></i>
-							</label>
-						</section>
-						<section class="col col-6">
-						<label class="label"><?php echo $LANG["Problem"]; ?></label>
-							<label class="select">
-								<select name="problem" id="problem">
-									<option value="0">Selecione a area</option>
-								</select>
-								<i></i>
-							</label>
-						</section>
-					</div>
 					
-					<section>
-						<div class="row">
-							<div class="col col-3">
-								<label class="label"><?php echo $LANG["SubProblem"]; ?></label>
-								<div id="subProblema">
-									
-								</div>
-							</div>
-							<div class="col col-3">
-								<label class="label"><?php echo $LANG["SLA"]; ?></label>
-								<div id="SLA">
-									
-								</div>
-							</div>
-							<div class="col col-3">								
-								<label class="label">Tipo</label>
-								<div id="tipo">
-									
-								</div>	
-							</div>
-						</div>
-					</section>
-
-					
-					<section>
-						<label class="textarea">
-							<i class="icon-append fa fa-comment"></i>
-							<textarea rows="5" name="comment" placeholder="Descreva o problema"></textarea>
-						</label>
-					</section>
-
-					<section>
-						<label for="file" class="input input-file">
-							<div class="button"><input type="file" name="file" multiple onchange="this.parentNode.nextSibling.value = this.value"><?php echo $LANG["Find"]; ?></div><input type="text" placeholder="Include some file" readonly>
-							<img style=" position: relative; top: 5px;" title="Consulta os equipamentos cadastrados para esse Departamento!" width="25" height="25" src="http://localhost/ocomon2.6.1-yanjos/includes/icons/forms/icon_more.png" onclick="teste()" border="0">
-						</label>
-					</section>
 
 					<section>
 						<label class="label"><?php echo $LANG["Email"]; ?></label>

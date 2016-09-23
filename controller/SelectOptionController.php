@@ -6,9 +6,9 @@ if(isset($_POST['responsibleArea'])){
 	
 	$selectOptionDAO = new SelectOptionDAO();
 	$cod = $_POST['responsibleArea'];
-	$responsibleArea = $selectOptionDAO->responsibleArea($cod);
+	$problem = $selectOptionDAO->problem($cod);
 	
-	echo json_encode($responsibleArea);
+	echo json_encode($problem);
 
 }
 
@@ -16,10 +16,20 @@ if(isset($_POST['problem'])){
 
 	$selectOptionDAO = new SelectOptionDAO();
 	$cod = $_POST['problem'];
-	$subProblem = $selectOptionDAO->subProblem($cod);
+	$codArea = $_POST['responsibleAreaSub'];
+	$subProblem = $selectOptionDAO->subProblem($cod,$codArea);
 
 	echo json_encode($subProblem);
 
 }
 
+if(isset($_POST['idName'])){
+
+	$selectOptionDAO = new SelectOptionDAO();
+	$cod = $_POST['idName'];
+	$subProblem = $selectOptionDAO->catchEmail($cod);
+
+	echo json_encode($subProblem);
+
+}
 ?>	

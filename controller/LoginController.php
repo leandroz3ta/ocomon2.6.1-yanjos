@@ -25,6 +25,7 @@
 			$_SESSION['atende'] = $userRow['sis_atende'];
 			$_SESSION['allArea'] = $usuarioDAO->areaUser( $userRow['user_id'] );	
 			$_SESSION['modal'] = 1;
+			$_SESSION['email'] = $userRow['email'];
 			$usuarioDAO->redirect($linkTickets); 
 			}
 			

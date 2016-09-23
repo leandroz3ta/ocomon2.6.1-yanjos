@@ -1,0 +1,20 @@
+--
+-- Table structure for table `prob_tipo_0`
+--
+
+DROP TABLE IF EXISTS `prob_tipo_0`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `prob_tipo_0` (
+  `probt0_cod` int(4) NOT NULL AUTO_INCREMENT,
+  `probt0_desc` varchar(100) CHARACTER SET latin1 NOT NULL,
+  PRIMARY KEY (`probt0_cod`)
+) ENGINE=MyISAM AUTO_INCREMENT=1 DEFAULT CHARSET=utf8;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+
+INSERT INTO `prob_tipo_0`(`probt0_desc`) SELECT problema FROM `problemas` GROUP BY problema
+
+update problemas p
+inner join  prob_tipo_0  t on p. problema =t. probt0_desc
+SET p.problema = t. probt0_cod
