@@ -203,7 +203,10 @@ $user = $selectOptionDAO->allUsers();
 
 					<section>
 						<label for="file" class="input input-file">
-							<div class="button"><input type="file" name="file" multiple onchange="this.parentNode.nextSibling.value = this.value"><?php echo $LANG["Find"]; ?></div><input type="text" placeholder="Include some file" readonly>
+							<div class="button">
+								<input type="file" name="file" multiple onchange="this.parentNode.nextSibling.value = this.value"><?php echo $LANG["Find"]; ?>
+							</div>
+							<input type="text" placeholder="Include some file" readonly>
 							<img style=" position: relative; top: 5px;" width="25" height="25" src="http://localhost/ocomon2.6.1-yanjos/includes/icons/forms/icon_more.png" onclick="teste()" border="0">
 						</label>
 					</section>
@@ -247,7 +250,6 @@ $user = $selectOptionDAO->allUsers();
 					
 					<div class="row">
 						<section class="col col-6">
-						<!-- função para trazer o email do usuario; atualizar sempre que o campo nome for alterado se for operador -->
 						<label class="label"><?php echo $LANG["Email"]; ?></label>
 							<label class="input">
 								<i class="icon-append fa fa-envelope-o"></i>

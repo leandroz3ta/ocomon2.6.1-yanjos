@@ -22,10 +22,77 @@ include_once("../../resources/config/geral.php");
 			<form action="" id="sky-form" class="sky-form">
 			<header>Configuracoes gerais</header>
 			
-			<fieldset>					
+			<fieldset>
+												
+				<!-- 
+				<section>
+						<div class="row">
+							<div class="col col-4">Permitir que o administrador altere datas manualmente</div>
+							<div class="col col-8">
+								<label class="checkbox"><input type="checkbox" name="remember" disabled><i></i></label>
+							</div>
+						</div>
+						<div class="note"><strong>OBS:</strong>Desativado para evitar erros de calculo no SLA</div>
+				</section>
+				 -->
+				 <label class="label">Chamados</label>
+				 <section>
+						<div class="row">
+							<div class="col col-4">Justificar Chamados com Tempo de Solução Acima do SLA</div>
+							<div class="col col-8">
+								<label class="checkbox"><input type="checkbox" name="remember"><i></i></label>
+							</div>
+						</div>						
+				</section>
+				
+				<section>
+						<div class="row">
+							<div class="col col-4">Permitir Reabertura de Chamado</div>
+							<div class="col col-8">
+								<label class="checkbox"><input type="checkbox" name="remember"><i></i></label>
+							</div>
+						</div>						
+				</section>
 				<section>
 					<div class="row">
-						<label class="label col col-4">Problema</label>
+						<label class="label col col-4">Quantidade de dias para reabertura</label>
+						<div class="col col-8">
+							<label class="input">								
+								<input type="text" name="problema">
+							</label>
+						</div>
+					</div>
+					
+				</section>
+				
+				<label class="label">Anexos</label>
+				<section>
+					<div class="row">
+						<label class="label col col-4">Tamanho Maximo</label>
+						<div class="col col-8">
+							<label class="input">								
+								<input type="text" name="problema">
+							</label>
+						</div>
+					</div>
+					
+				</section>
+				
+				<section>
+					<div class="row">
+						<label class="label col col-4">Tipos de Arquivo</label>
+						<div class="col col-8">
+							<label class="input">								
+								<input type="text" name="problema">
+							</label>
+						</div>
+					</div>
+				</section>
+				
+				<label class="label">Categoria de Problemas</label>
+				<section>
+					<div class="row">
+						<label class="label col col-4">Categoria 1</label>
 						<div class="col col-8">
 							<label class="input">								
 								<input type="text" name="problema">
@@ -36,7 +103,7 @@ include_once("../../resources/config/geral.php");
 				
 				<section>
 					<div class="row">
-						<label class="label col col-4">Problema</label>
+						<label class="label col col-4">Categoria 2</label>
 						<div class="col col-8">
 							<label class="input">								
 								<input type="text" name="problema">
@@ -47,7 +114,7 @@ include_once("../../resources/config/geral.php");
 				
 				<section>
 					<div class="row">
-						<label class="label col col-4">Problema</label>
+						<label class="label col col-4">Categoria 3</label>
 						<div class="col col-8">
 							<label class="input">								
 								<input type="text" name="problema">
@@ -56,321 +123,13 @@ include_once("../../resources/config/geral.php");
 					</div>
 				</section>
 				
-				<section>
-					<div class="row">
-						<label class="label col col-4">Problema</label>
-						<div class="col col-8">
-							<label class="input">								
-								<input type="text" name="problema">
-							</label>
-						</div>
-					</div>
-				</section>
-				
-				<section>
-					<div class="row">
-						<label class="label col col-4">Problema</label>
-						<div class="col col-8">
-							<label class="input">								
-								<input type="text" name="problema">
-							</label>
-						</div>
-					</div>
-				</section>
-				
-				<section>
-					<div class="row">
-						<label class="label col col-4">Problema</label>
-						<div class="col col-8">
-							<label class="input">								
-								<input type="text" name="problema">
-							</label>
-						</div>
-					</div>
-				</section>
-				
-				<section>
-					<div class="row">
-						<label class="label col col-4">Problema</label>
-						<div class="col col-8">
-							<label class="input">								
-								<input type="text" name="problema">
-							</label>
-						</div>
-					</div>
-				</section>
-				
-				<section>
-					<div class="row">
-						<label class="label col col-4">Problema</label>
-						<div class="col col-8">
-							<label class="input">								
-								<input type="text" name="problema">
-							</label>
-						</div>
-					</div>
-				</section>
-				
-				<section>
-					<div class="row">
-						<label class="label col col-4">Problema</label>
-						<div class="col col-8">
-							<label class="input">								
-								<input type="text" name="problema">
-							</label>
-						</div>
-					</div>
-				</section>
-				
-				<section>
-					<div class="row">
-						<label class="label col col-4">Problema</label>
-						<div class="col col-8">
-							<label class="input">								
-								<input type="text" name="problema">
-							</label>
-						</div>
-					</div>
-				</section>
-				
-				<section>
-					<div class="row">
-						<label class="label col col-4">Problema</label>
-						<div class="col col-8">
-							<label class="input">								
-								<input type="text" name="problema">
-							</label>
-						</div>
-					</div>
-				</section>
-				
-				<section>
-					<div class="row">
-						<label class="label col col-4">Problema</label>
-						<div class="col col-8">
-							<label class="select">
-								<select name="interested">
-									<option value="none" selected disabled>Interested in</option>
-									<option value="design">design</option>
-									<option value="development">development</option>
-									<option value="illustration">illustration</option>
-									<option value="branding">branding</option>
-									<option value="video">video</option>
-								</select>
-								<i></i>
-							</label>
-						</div>
-					</div>							
-				</section>
-				
-				<section>
-					<div class="row">
-						<label class="label col col-4">Problema</label>
-						<div class="col col-8">
-							<label class="select">
-								<select name="interested">
-									<option value="none" selected disabled>Interested in</option>
-									<option value="design">design</option>
-									<option value="development">development</option>
-									<option value="illustration">illustration</option>
-									<option value="branding">branding</option>
-									<option value="video">video</option>
-								</select>
-								<i></i>
-							</label>
-						</div>
-					</div>							
-				</section>
-				
-				<section>
-					<div class="row">
-						<label class="label col col-4">Problema</label>
-						<div class="col col-8">
-							<label class="select">
-								<select name="interested">
-									<option value="none" selected disabled>Interested in</option>
-									<option value="design">design</option>
-									<option value="development">development</option>
-									<option value="illustration">illustration</option>
-									<option value="branding">branding</option>
-									<option value="video">video</option>
-								</select>
-								<i></i>
-							</label>
-						</div>
-					</div>							
-				</section>
-				
-				<section>
-					<div class="row">
-						<label class="label col col-4">Problema</label>
-						<div class="col col-8">
-							<label class="select">
-								<select name="interested">
-									<option value="none" selected disabled>Interested in</option>
-									<option value="design">design</option>
-									<option value="development">development</option>
-									<option value="illustration">illustration</option>
-									<option value="branding">branding</option>
-									<option value="video">video</option>
-								</select>
-								<i></i>
-							</label>
-						</div>
-					</div>							
-				</section>
-				
-				<section>
-					<div class="row">
-						<label class="label col col-4">Problema</label>
-						<div class="col col-8">
-							<label class="select">
-								<select name="interested">
-									<option value="none" selected disabled>Interested in</option>
-									<option value="design">design</option>
-									<option value="development">development</option>
-									<option value="illustration">illustration</option>
-									<option value="branding">branding</option>
-									<option value="video">video</option>
-								</select>
-								<i></i>
-							</label>
-						</div>
-					</div>							
-				</section>
-				
-				<section>
-						<div class="row">
-							<div class="col col-4"></div>
-							<div class="col col-8">
-								<label class="checkbox"><input type="checkbox" name="remember" checked><i></i>Keep me logged in</label>
-							</div>
-						</div>
-				</section>
-				
-				<section>
-						<div class="row">
-							<div class="col col-4"></div>
-							<div class="col col-8">
-								<label class="checkbox"><input type="checkbox" name="remember" checked><i></i>Keep me logged in</label>
-							</div>
-						</div>
-				</section>
-				
-				<section>
-						<div class="row">
-							<div class="col col-4"></div>
-							<div class="col col-8">
-								<label class="checkbox"><input type="checkbox" name="remember" checked><i></i>Keep me logged in</label>
-							</div>
-						</div>
-				</section>
-				
-				<section>
-						<div class="row">
-							<div class="col col-4"></div>
-							<div class="col col-8">
-								<label class="checkbox"><input type="checkbox" name="remember" checked><i></i>Keep me logged in</label>
-							</div>
-						</div>
-				</section>
-				
-				<section>
-						<div class="row">
-							<div class="col col-4"></div>
-							<div class="col col-8">
-								<label class="checkbox"><input type="checkbox" name="remember" checked><i></i>Keep me logged in</label>
-							</div>
-						</div>
-				</section>
-				
-				<section>
-						<div class="row">
-							<div class="col col-4"></div>
-							<div class="col col-8">
-								<label class="checkbox"><input type="checkbox" name="remember" checked><i></i>Keep me logged in</label>
-							</div>
-						</div>
-				</section>
-				
-				<section>
-						<div class="row">
-							<div class="col col-4"></div>
-							<div class="col col-8">
-								<label class="checkbox"><input type="checkbox" name="remember" checked><i></i>Keep me logged in</label>
-							</div>
-						</div>
-				</section>
-				
-				<section>
-						<div class="row">
-							<div class="col col-4"></div>
-							<div class="col col-8">
-								<label class="checkbox"><input type="checkbox" name="remember" checked><i></i>Keep me logged in</label>
-							</div>
-						</div>
-				</section>
-				
-				<section>
-						<div class="row">
-							<div class="col col-4"></div>
-							<div class="col col-8">
-								<label class="checkbox"><input type="checkbox" name="remember" checked><i></i>Keep me logged in</label>
-							</div>
-						</div>
-				</section>
-				
-				<section>
-						<div class="row">
-							<div class="col col-4"></div>
-							<div class="col col-8">
-								<label class="checkbox"><input type="checkbox" name="remember" checked><i></i>Keep me logged in</label>
-							</div>
-						</div>
-				</section>
-				
-				<section>
-						<div class="row">
-							<div class="col col-4"></div>
-							<div class="col col-8">
-								<label class="checkbox"><input type="checkbox" name="remember" checked><i></i>Keep me logged in</label>
-							</div>
-						</div>
-				</section>
-				
-				<section>
-						<div class="row">
-							<div class="col col-4"></div>
-							<div class="col col-8">
-								<label class="checkbox"><input type="checkbox" name="remember" checked><i></i>Keep me logged in</label>
-							</div>
-						</div>
-				</section>
-				
-				<section>
-						<div class="row">
-							<div class="col col-4"></div>
-							<div class="col col-8">
-								<label class="checkbox"><input type="checkbox" name="remember" checked><i></i>Keep me logged in</label>
-							</div>
-						</div>
-				</section>
-				
-				<section>
-						<div class="row">
-							<div class="col col-4"></div>
-							<div class="col col-8">
-								<label class="checkbox"><input type="checkbox" name="remember" checked><i></i>Keep me logged in</label>
-							</div>
-						</div>
-				</section>
 					
 					
 				
 			</fieldset>
 			<footer>
-				<button type="submit" class="button">Cadastrar</button>
-				<a href="#" class="button button-secondary modal-closer">Fechar</a>
+				<button type="submit" class="button">Salvar</button>
+				<a href="#" class="button button-secondary modal-closer">Voltar</a>
 			</footer>				
 			</form>
 		</div>

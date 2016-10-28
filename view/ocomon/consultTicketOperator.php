@@ -143,12 +143,12 @@ $(document).ready(function() {
 				<a class="toggle-vis" data-column="2">Área</a> - 
 				<a class="toggle-vis" data-column="3">Etiqueta</a> - 
 				<a class="toggle-vis" data-column="4">Problema</a> - 
-				<a class="toggle-vis" data-column="5">Contato</a>
-				<a class="toggle-vis" data-column="6">Ramal</a>
-				<a class="toggle-vis" data-column="7">Setor</a>
-				<a class="toggle-vis" data-column="8">Status</a>
-				<a class="toggle-vis" data-column="9">SLA Resposta</a>
-				<a class="toggle-vis" data-column="10">SLA Solução</a>
+				<a class="toggle-vis" data-column="5">Contato</a> -
+				<a class="toggle-vis" data-column="6">Ramal</a> -
+				<a class="toggle-vis" data-column="7">Setor</a> -
+				<a class="toggle-vis" data-column="8">Status</a> -
+				<a class="toggle-vis" data-column="9">SLA Resposta</a> -
+				<a class="toggle-vis" data-column="10">SLA Solução</a> 
 			</div>
 			<table id="ticketTable" class="display" cellspacing="0" width="100%">
 				<thead>

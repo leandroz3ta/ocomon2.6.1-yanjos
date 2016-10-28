@@ -58,7 +58,7 @@ class LoginDAO extends GeneralDAO{
 	
 		try
 		{	
-			
+			session_start();
 			session_destroy();
 					
 			self::redirect($linkLogin);
